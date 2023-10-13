@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 472e076f709df204ab7be50839c99315
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 238393
+  packageName: Super Grotto Escape Pack
+  packageVersion: 1.0
+  assetPath: Assets/Super Grotto Escape/Characters/Enemies/Skeleton-IDle/skeleton-idle1.controller
+  uploadId: 545561
