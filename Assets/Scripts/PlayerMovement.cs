@@ -4,55 +4,41 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //Declare variables
     public float speed = 10f;
-    public float jumpHeight = 7f;
-    public float dashspped = 20f;
+    public float jumpHeight = 6f;
     public float crouchHeight = 0.5f;
-    public LayerMask whatIsGround;
-    public Transform groundCheckPoint;
-    public float groundCheckRadious = 0.2f;
-
-    public AudioClip jumpSound;
-    public AudioClip dashSound;
-    public AudioClip footstepSound;
 
     private Rigidbody2D body;
-    //private Animator anim;
-    private AudioSource audioSource;
+    private Animator anim;
     private bool grounded;
-    private bool canDoubleJump = false;
-    private bool isDashing = false;
     private bool isCrouching = false;
     private bool faceRight = true;
 
-    // Start is called before the first frame update
+    // Awake method is called when the script is loaded
     void Awake()
     {
+        // Links the variables in script to the matching components in engine
         body = GetComponent<Rigidbody2D>();
-        // anim = GetComponent<Animator>();
-        audioSource = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        grounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadious, whatIsGround);
-
+        // Creates a variable that stores a float based on the players input on the horizontal axis, raw means there is no smoothing so is better fordigital input like keyboard
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        //anim.SetBool("Walk", horizontalInput != 0);
+        anim.SetBool("run", horizontalInput != 0);
+        anim.SetBool("grounded", grounded);
 
         if(Input.GetKeyDown(KeyCode.Space) && grounded)
         {
             Jump();
-            canDoubleJump = true;
-        }
-        else if(Input.GetKeyDown(KeyCode.Space) && canDoubleJump)
-        {
-            Jump();
-            canDoubleJump = false;
+            anim.SetTrigger("jump");
         }
 
+        // If the player moves left while facing right, or moves right while facing left, will call the flip method
         if((horizontalInput>0 && !faceRight)||(horizontalInput<0 && faceRight))
         {
             Flip();
@@ -78,11 +64,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Creates a method that makes the player jump
     private void Jump()
     {
+        //changes the velocity of the players rigid body along the vertical axis
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
-        //anim.SetTrigger("Jump");
         grounded = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Ground")
+        {
+            grounded = true;
+        }
     }
 
     private void Flip()
@@ -96,5 +91,9 @@ public class PlayerMovement : MonoBehaviour
     private void Grav()
     {
         body.gravityScale *= -1;
+        jumpHeight *= -1;
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.y *= -1;
+        gameObject.transform.localScale = currentScale;
     }
 }
