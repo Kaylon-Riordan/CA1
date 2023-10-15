@@ -5,23 +5,21 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     //Declare variables for stats like move speed, jump height and player height
-    public float speed = 10f;
+    public float speed = 6f;
     public float jumpHeight = 6f;
     public float height;
     // Declares a Layer which can be used later to check if the player is on the ground
     public LayerMask layerGround; 
     // Declaures a vector which will be used later to tell iof the players feet are pointing up or down
     public Vector2 feet;
-    // Declare a vector which is used for fliping our player character in different methods
-    Vector3 currentScale;
     // Declare variables which will be used to link collider, animator and rigid body between script and engine
     private CapsuleCollider2D coll;
     private Rigidbody2D body;
     private Animator anim;
     // Declare booleans which will be used to check if player is crouching or sliding and what direction they are facing
     private bool isCrouching = false;
-    private bool isSliding = false;
-    private bool faceRight = true;
+    public bool isSliding = false;
+    public bool faceRight = true;
 
     // Awake method is called when the script is loaded
     void Awake()
@@ -30,12 +28,10 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<CapsuleCollider2D>();
-        // sets the direction feet are facing to down by default
+        // Sets the direction feet are facing to down by default
         feet = Vector2.down;
-
+        // Sets the height variable to the height of the players capsule collider
         height = coll.size.y;
-        // sets the currentScale variable to match the scale of the player in engine
-        currentScale = gameObject.transform.localScale;
     }
 
     // Update is called once per frame
@@ -45,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         // Changes the rigid bodyie's velocity to be the detected horizontal input multiplied by the player's speed allowing it to move left and right
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
-        // Sets 3 booleans which can be used by the animator to trigger transitions between animations for running and jumping
+        // Sets 4 booleans which can be used by the animator to trigger transitions between animations for running, jumping, crouching and sliding
         // Code for animator based on this video (Pandemonium (2020). Unity 2D Platformer for Complete Beginners - #2 ANIMATION. YouTube. Available at: https://www.youtube.com/watch?v=Gf8LOFNnils&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=2 [Accessed 14 Oct. 2023].)
         anim.SetBool("run", horizontalInput != 0);
         anim.SetBool("grounded", isGrounded());
@@ -56,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
         {
             Jump();
-            anim.SetTrigger("jump");
         }
 
         // If the player moves left while facing right, or moves right while facing left, will call the flip method
@@ -65,25 +60,22 @@ public class PlayerMovement : MonoBehaviour
             Flip();
         }
 
+        // If the player is on the ground and has the s key down while still then run the crouch method
         if(Input.GetKey(KeyCode.S) && isGrounded() && horizontalInput == 0)
         {
-            coll.size = new Vector3(coll.size.x, 0.8f * height);
-            speed = 0f;
-            isCrouching = true;
-        }
-        else if(Input.GetKey(KeyCode.S) && isGrounded() && horizontalInput != 0)
-        {
-            coll.size = new Vector3(coll.size.x, 0.8f * height);
-            isCrouching = false;
-            isSliding = true;
+            Crouch();
         }
 
+        // If the player is on the ground and has the s key down while moving then run the crouch method
+        if(Input.GetKey(KeyCode.S) && isGrounded() && horizontalInput != 0)
+        {
+            Slide();
+        }
+
+        // If the s key is lifted up then run the stand method
         if(Input.GetKeyUp(KeyCode.S))
         {
-            coll.size = new Vector3(coll.size.x, height);
-            speed = 10f;
-            isCrouching = false;
-            isSliding = false;
+            Stand();
         }
 
         // If g is pressed, call the method to flip gravity
@@ -98,16 +90,51 @@ public class PlayerMovement : MonoBehaviour
     {
         // Changes the velocity of the players rigid body along the vertical axis
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
+        // Send the animator the jump trigger when player jumps
+        anim.SetTrigger("jump");
     }
 
     // Creates a method to turn the character around
     private void Flip()
     {
-        // Multiplies the characters x axis sclae by -1, fliping the character horizontaly
-        currentScale.x *= -1;
-        gameObject.transform.localScale = currentScale;
+        // Rotates the character on the y axis by 180, fliping them horizontaly 
+        transform.Rotate(0f, 180f, 0f);
         // Changes a boolean to keep track of waht direction the character is facing
         faceRight = !faceRight;
+    }
+
+    // Creates a method to crouch
+    private void Crouch()
+    {
+
+        // Changes the player colliders vertical sclae to better match the croutching sprite
+        coll.size = new Vector3(coll.size.x, 0.8f * height);
+        // Sets speed to 0 so player cant move while crouching
+        speed = 0f;
+        // Changes variables which are used by the animator
+        isCrouching = true;
+        isSliding = false;
+    }
+
+    // Creates a method to slide
+    private void Slide()
+    {
+        // Changes the player colliders vertical sclae to better match the sliding sprite
+        coll.size = new Vector3(coll.size.x, 0.8f * height);
+        // Changes variables which are used by the animator
+        isSliding = true;
+    }
+
+    // Creates a method to stand back up after crouching
+    private void Stand()
+    {
+        // Sets the players collider back to origional height
+        coll.size = new Vector3(coll.size.x, height);
+        // Sets speed back to 10 so player can move after crouching
+        speed = 10f;
+        // Changes variables which are used by the animator
+        isCrouching = false;
+        isSliding = false;
     }
 
     // This method swaps the direction of the players gravity
@@ -117,9 +144,8 @@ public class PlayerMovement : MonoBehaviour
         body.gravityScale *= -1;
         // Swaps the direction the player jumps in to opose its gravity
         jumpHeight *= -1;
-        // Multiplies the characters y axis sclae by -1, fliping the character verticaly
-        currentScale.y *= -1;
-        gameObject.transform.localScale = currentScale;
+        // Rotates the character on the x axis by 180, fliping them vertically
+        transform.Rotate(180f, 0f, 0f);
         // Changes the direction the characters feet point in to match the sprite so ground can accurately be checked
         if(feet == Vector2.down)
         {
@@ -133,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Uses a method to check if player is on the ground
     // Code for this method is based off this video (Pandemonium (2021). Unity 2D Platformer for Complete Beginners - #3 WALL JUMPING. YouTube. Available at: https://www.youtube.com/watch?v=_UBpkdKlJzE&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=3 [Accessed 14 Oct. 2023].‌)
-    private bool isGrounded()
+    public bool isGrounded()
     {
         // Casts a box ray to check if there is a ground object at the players feet and returns result
         RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, feet, 0.1f, layerGround);
