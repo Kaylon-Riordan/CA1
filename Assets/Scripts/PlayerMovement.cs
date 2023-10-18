@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded()
     {
         // Casts a box ray to check if there is a ground object at the players feet and returns result
-        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, feet, 0.1f, layerGround);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, feet, 0.01f, layerGround);
         return raycastHit.collider != null;
     }
 }
