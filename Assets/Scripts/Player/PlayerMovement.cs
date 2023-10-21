@@ -36,13 +36,20 @@ public class PlayerMovement : MonoBehaviour
         height = coll.size.y;
     }
 
-    // Update is called once per frame
-    void Update()
+    // Fixed update is used for movement so that the players speed isn't affected by framerate
+    void FixedUpdate()
     {
         // Creates a variable that stores a float based on the players input on the horizontal axis, raw means there is no smoothing so is better fordigital input like keyboard
         float horizontalInput = Input.GetAxisRaw("Horizontal");
         // Changes the rigid bodyie's velocity to be the detected horizontal input multiplied by the player's speed allowing it to move left and right
         body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // Declare horizontal input again for normal update method
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
         // Sets 4 booleans which can be used by the animator to trigger transitions between animations for running, jumping, crouching and sliding
         // Code for animator based on this video (Pandemonium (2020). Unity 2D Platformer for Complete Beginners - #2 ANIMATION. YouTube. Available at: https://www.youtube.com/watch?v=Gf8LOFNnils&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=2 [Accessed 14 Oct. 2023].)
         anim.SetBool("run", horizontalInput != 0);

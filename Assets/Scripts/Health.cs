@@ -40,8 +40,8 @@ public class Health : MonoBehaviour
         anim.SetTrigger("hurt");
 
         // Calls the Invulnerable method when damage is taken, giving the character iFrames after damage
-        if (currentHealth > 0f)
         Invulnerable();
+        if (currentHealth > 0f)
         // If the character still has health, invokes the Vulnerable method after a number of seconds determined by the iFrameLegth variable
         {
             Invoke ("Vulnerable", iFrameLength);
