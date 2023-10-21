@@ -6,8 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     //Declare variables for stats like move speed, jump height and player height
     public float speed = 6f;
-    public float jumpHeight = 6f;
+    public float jumpHeight = 10f;
     public float height;
+    public float gravityScale = 2f;
     // Declares a Layer which can be used later to check if the player is on the ground
     public LayerMask layerGround; 
     // Declaures a vector which will be used later to tell iof the players feet are pointing up or down
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         coll = GetComponent<CapsuleCollider2D>();
+        body.gravityScale = gravityScale;
         // Sets the direction feet are facing to down by default
         feet = Vector2.down;
         // Sets the height variable to the height of the players capsule collider
