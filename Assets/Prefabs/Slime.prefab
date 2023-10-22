@@ -12,11 +12,14 @@ GameObject:
   - component: {fileID: 3568987589347158652}
   - component: {fileID: 753306284279281833}
   - component: {fileID: 8584923729289427282}
+  - component: {fileID: -6985434759043845943}
   - component: {fileID: 1364537073497025547}
   - component: {fileID: 2341987181565459945}
-  m_Layer: 9
+  - component: {fileID: 3873667799469863615}
+  - component: {fileID: 2400546757351279684}
+  m_Layer: 11
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -147,6 +150,43 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: -0.1}
   m_Size: {x: 0.8, y: 0.8}
   m_Direction: 0
+--- !u!70 &-6985434759043845943
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635042276378892906}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: -0.1}
+  m_Size: {x: 0.8, y: 0.8}
+  m_Direction: 0
 --- !u!50 &1364537073497025547
 Rigidbody2D:
   serializedVersion: 4
@@ -173,7 +213,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &2341987181565459945
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,6 +226,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce96f86aa6f5dd24389cc04d319fa8ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 3
-  invulnerability: 1
+  maxHealth: 2
+  iFrameLength: 1
   currentHealth: 0
+--- !u!114 &3873667799469863615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635042276378892906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 652fd7f59a409a546932f570aca3ba05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: -4
+  left: {fileID: 0}
+  right: {fileID: 0}
+--- !u!114 &2400546757351279684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2635042276378892906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 316f0a47bcd73c943b65a220f7e82efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

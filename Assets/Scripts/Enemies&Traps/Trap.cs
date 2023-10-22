@@ -11,8 +11,8 @@ public class Trap : MonoBehaviour
     // This method is based on code in this video (Pandemonium (2021). Unity 2D Platformer for Complete Beginners - #7 HEALTH SYSTEM. YouTube. Available at: https://www.youtube.com/watch?v=yxzg8jswZ8A&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=7 [Accessed 20 Oct. 2023].)
     private void OnTriggerStay2D(Collider2D collision)
     {
-        // If the object the trap collided with is tagged as a character and the character isnt currently invunerable, reduce the character's health by the traps damage
-        if (collision.tag == "Character" && collision.GetComponent<Health>().isInvulnerable()==false)
+        // If the object the trap collided with is tagged as a player or enemy and the character isn't currently invunerable, reduce the character's health by the traps damage
+        if ((collision.tag == "Player" ||collision.tag == "Enemy" ) && collision.GetComponent<Health>().isInvulnerable()==false)
         {
             collision.GetComponent<Health>().TakeDamage(damage);
         }
