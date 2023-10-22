@@ -101,6 +101,8 @@ public class PlayerMovement : MonoBehaviour
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
         // Send the animator the jump trigger when player jumps
         anim.SetTrigger("jump");
+        // Play the jump sound from the audio manager
+        AudioManager.instance.PlayPlayerJumpSound();
     }
 
     // Creates a method to turn the character around

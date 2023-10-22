@@ -4,28 +4,36 @@ using UnityEngine;
 
 public class EnemySlime : MonoBehaviour
 {
-    public float speed = -4f;
+    // Set 2 serialize fields so the left and right movement boundaries can be placed in unity
     [SerializeField] private Transform left;
     [SerializeField] private Transform right;
+    // Create a referance for the rigid body
     private Rigidbody2D body;
+    // Set variables for speed and damage
+    public float speed = -4f;
+    private float damage = 1;
+    // Sets variables for a flip tiemr and cooldown, so the enemy dosnt constantly flip on spot as soon as it leaves boundaries
     private float flipCooldown = 1f;
     private float flipTimer = 1f;
-    private float damage = 1;
 
     // Awake method is called when the script is loaded
     void Awake()
     {
+        // Link body varaible to the slimes rigid body
         body = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    // Fixed Update is called at a fixed rate so methods inside it aren't affected by framerate
     void FixedUpdate()
     {
+        // Set horizontal velocity to equal the speed variable
         body.velocity = new Vector2(speed, body.velocity.y);
+        // If the slime is not between the left and right boundary points, then flip
         if((body.position.x <= left.position.x || body.position.x >= right.position.x) && flipTimer > flipCooldown)
         {
             Flip();
         }
+        // Increase the flip timer every second using deltatime
         flipTimer += Time.deltaTime;
     }
 
@@ -34,7 +42,9 @@ public class EnemySlime : MonoBehaviour
     {
         // Rotates the character on the y axis by 180, fliping them horizontaly 
         transform.Rotate(0f, 180f, 0f);
+        // Multiplies speed by -1 to swap its direction
         speed *= -1;
+        // Resets the flip timer to 0
         flipTimer = 0;
     }
 

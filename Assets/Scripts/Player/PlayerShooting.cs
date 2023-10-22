@@ -43,5 +43,7 @@ public class PlayerCombat : MonoBehaviour
         anim.SetTrigger("shoot");
         // Create a copy of the bullet prefab
         Instantiate(bulletPrefab, gun.position, transform.rotation);
+        // Play the shoot sound from the audio manager
+        AudioManager.instance.PlayPlayerShootSound();
     }
 }

@@ -38,6 +38,8 @@ public class Health : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth - damage, 0, maxHealth);
         // Trigger the hurt animation
         anim.SetTrigger("hurt");
+        // Play the hurt sound from the audio manager
+        AudioManager.instance.PlayHurtSound();
 
         // Calls the Invulnerable method when damage is taken, giving the character iFrames after damage
         Invulnerable();
