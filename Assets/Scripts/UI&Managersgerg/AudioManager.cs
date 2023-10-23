@@ -12,6 +12,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip playerJump;
     public AudioClip playerShoot;
     public AudioClip hurt;
+    public AudioClip grav;
 
     [Header("Music")]
     public AudioClip backgroundMusic; 
@@ -59,5 +60,9 @@ public class AudioManager : MonoBehaviour
     public void PlayHurtSound()
     {
         soundEffectsSource.PlayOneShot(hurt);
+    }
+    public void PlayGravSound()
+    {
+        soundEffectsSource.PlayOneShot(grav);
     }
 }

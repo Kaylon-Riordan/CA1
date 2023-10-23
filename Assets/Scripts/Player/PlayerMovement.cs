@@ -17,10 +17,11 @@ public class PlayerMovement : MonoBehaviour
     private CapsuleCollider2D coll;
     private Rigidbody2D body;
     private Animator anim;
-    // Declare booleans which will be used to check if player is crouching or sliding and what direction they are facing
+    // Declare booleans which will be used to check if player is crouching or sliding, what direction they are facing nad wether they can swap gravity
     private bool isCrouching = false;
     public bool isSliding = false;
     public bool faceRight = true;
+    public bool canGrav = true;
 
     // Awake method is called when the script is loaded
     void Awake()
@@ -50,6 +51,11 @@ public class PlayerMovement : MonoBehaviour
     {
         // Declare horizontal input again for normal update method
         float horizontalInput = Input.GetAxisRaw("Horizontal");
+        // Sets it so player can swap gravity as long as they have touched ground since last using it
+        if(isGrounded())
+        {
+            canGrav = true;
+        }
         // Sets 4 booleans which can be used by the animator to trigger transitions between animations for running, jumping, crouching and sliding
         // Code for animator based on this video (Pandemonium (2020). Unity 2D Platformer for Complete Beginners - #2 ANIMATION. YouTube. Available at: https://www.youtube.com/watch?v=Gf8LOFNnils&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=2 [Accessed 14 Oct. 2023].)
         anim.SetBool("run", horizontalInput != 0);
@@ -62,7 +68,11 @@ public class PlayerMovement : MonoBehaviour
         {
             Jump();
         }
-
+        // If the space key is released and the player has vertical velocity, run hop method
+        if(Input.GetKeyUp(KeyCode.Space) && body.velocity.y != 0)
+        {
+            Hop();
+        }
         // If the player moves left while facing right, or moves right while facing left, will call the flip method
         if((horizontalInput>0 && !faceRight)||(horizontalInput<0 && faceRight))
         {
@@ -88,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // If g is pressed, call the method to flip gravity
-        if(Input.GetKeyDown(KeyCode.G))
+        if(Input.GetKeyDown(KeyCode.G) && canGrav)
         {
             Grav();
         }
@@ -103,6 +113,13 @@ public class PlayerMovement : MonoBehaviour
         anim.SetTrigger("jump");
         // Play the jump sound from the audio manager
         AudioManager.instance.PlayPlayerJumpSound();
+    }
+
+    //Creates a method to vary jump height based on button press length
+    private void Hop()
+    {
+        // When space is released, half vertical velocity, cutting jump short
+        body.velocity = new Vector2(body.velocity.x, body.velocity.y / 2f);
     }
 
     // Creates a method to turn the character around
@@ -157,6 +174,10 @@ public class PlayerMovement : MonoBehaviour
         jumpHeight *= -1;
         // Rotates the character on the x axis by 180, fliping them vertically
         transform.Rotate(180f, 0f, 0f);
+        // Sets it so player cant use gravity reverse after using it, until ground is touched
+        canGrav = false;
+        // SPlays grav sound effect through audio manager instance
+        AudioManager.instance.PlayGravSound();
         // Changes the direction the characters feet point in to match the sprite so ground can accurately be checked
         if(feet == Vector2.down)
         {
