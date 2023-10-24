@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    // Set variables for max health, invunerable status, current health, iframe length, spreite renderer and an animator
+    // Set variables for max health, invunerable status, current health, iframe length, spreite renderer, an animator and the smoke particle system
     [SerializeField] private float maxHealth = 3;
     [SerializeField] private float iFrameLength = 1f;
     private bool invulnerable = false;
@@ -18,7 +18,7 @@ public class Health : MonoBehaviour
     {
         // Set the animator and renderer to the character's animator and sprite renderer, and set current health to start at max health
         anim = GetComponent<Animator>();
-        spriRend = GetComponent<SpriteRenderer>();;
+        spriRend = GetComponent<SpriteRenderer>();
         currentHealth = maxHealth;
     }
 
@@ -52,7 +52,7 @@ public class Health : MonoBehaviour
         // If the character has lost all health, runs the Die method
         else 
         {
-            Die();
+            Invoke ("Die", 0.1f);
         } 
     }
 
@@ -74,6 +74,7 @@ public class Health : MonoBehaviour
     // This method destroys a character when it dies
     public void Die()
     {
+        // Creates a smoke particle effect on the characters location when they die
         Instantiate (smoke, transform.position, transform.rotation);
         Destroy(gameObject);
     }

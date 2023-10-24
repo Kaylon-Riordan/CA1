@@ -178,6 +178,8 @@ public class PlayerMovement : MonoBehaviour
         canGrav = false;
         // SPlays grav sound effect through audio manager instance
         AudioManager.instance.PlayGravSound();
+        // Send the animator the jump trigger when player swaps gravity
+        anim.SetTrigger("jump");
         // Changes the direction the characters feet point in to match the sprite so ground can accurately be checked
         if(feet == Vector2.down)
         {
