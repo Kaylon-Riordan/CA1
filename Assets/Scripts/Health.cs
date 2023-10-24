@@ -11,6 +11,7 @@ public class Health : MonoBehaviour
     public float currentHealth;
     private Animator anim;
     private SpriteRenderer spriRend;
+    [SerializeField] private ParticleSystem smoke;
 
     // Awake method is called when the script is loaded
     void Awake()
@@ -52,8 +53,7 @@ public class Health : MonoBehaviour
         else 
         {
             Die();
-        }
-        
+        } 
     }
 
     // The next 2 methods are based on code in this video (Pandemonium (2021). Unity 2D Platformer for Complete Beginners - #8 IFRAMES. YouTube. Available at: https://www.youtube.com/watch?v=YSzmCf_L2cE&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=9 [Accessed 21 Oct. 2023].)
@@ -74,6 +74,7 @@ public class Health : MonoBehaviour
     // This method destroys a character when it dies
     public void Die()
     {
+        Instantiate (smoke, transform.position, transform.rotation);
         Destroy(gameObject);
     }
 

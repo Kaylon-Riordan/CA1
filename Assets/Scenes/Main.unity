@@ -200,6 +200,7 @@ MonoBehaviour:
   playerJump: {fileID: 8300000, guid: b37ce52161a9b834888a6ba2f3c04783, type: 3}
   playerShoot: {fileID: 8300000, guid: 0ed0f0dff76aeb14d837741f86dec16a, type: 3}
   hurt: {fileID: 8300000, guid: 6780496e1a1c8f044a81056668c61b99, type: 3}
+  grav: {fileID: 8300000, guid: 5305704161962564891d46dcbaec0c1a, type: 3}
   backgroundMusic: {fileID: 8300000, guid: d0bf1437f6cbd164baba5d661ba6e976, type: 3}
 --- !u!4 &120927854
 Transform:
@@ -9727,7 +9728,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 853335518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.2, y: 0.17, z: 0}
+  m_LocalPosition: {x: 2.57, y: 1.61, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9821,6 +9822,7 @@ MonoBehaviour:
   feet: {x: 0, y: 0}
   isSliding: 0
   faceRight: 1
+  canGrav: 1
 --- !u!114 &853335525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9850,6 +9852,7 @@ MonoBehaviour:
   maxHealth: 3
   iFrameLength: 1
   currentHealth: 0
+  smoke: {fileID: 3222002333168289883, guid: 9ccab2eae9227c444adb44fa3c1199be, type: 3}
 --- !u!1 &886973245
 GameObject:
   m_ObjectHideFlags: 0

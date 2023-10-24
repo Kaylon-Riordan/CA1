@@ -229,6 +229,7 @@ MonoBehaviour:
   maxHealth: 2
   iFrameLength: 1
   currentHealth: 0
+  smoke: {fileID: 3222002333168289883, guid: 9ccab2eae9227c444adb44fa3c1199be, type: 3}
 --- !u!114 &3873667799469863615
 MonoBehaviour:
   m_ObjectHideFlags: 0
