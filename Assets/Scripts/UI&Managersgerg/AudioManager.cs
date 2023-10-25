@@ -14,6 +14,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip hurt;
     public AudioClip grav;
     public AudioClip gameOver;
+    public AudioClip victory;
 
     [Header("Music")]
     public AudioClip backgroundMusic; 
@@ -69,5 +70,9 @@ public class AudioManager : MonoBehaviour
     public void PlayGameOverSound()
     {
         soundEffectsSource.PlayOneShot(gameOver);
+    }
+    public void PlayVictorySound()
+    {
+        soundEffectsSource.PlayOneShot(victory);
     }
 }

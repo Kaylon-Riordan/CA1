@@ -9,10 +9,13 @@ public class UiManager : MonoBehaviour
     // Set up serialize fields to link in the pause and game over screens, and the health script
     [SerializeField] private GameObject gameOverScreen;
     [SerializeField] private GameObject pauseScreen;
+    [SerializeField] private GameObject victoryScreen;
     [SerializeField] private Health health;
+    [SerializeField] private Victory victory;
     // Create booleans to track if the game is paused or over
     private bool over = false;
     private bool paused = false;
+    private bool won = false;
     
     // Awake method is called when the script is loaded
     void Awake()
@@ -20,6 +23,7 @@ public class UiManager : MonoBehaviour
         // Set the screens off when the game is started
         gameOverScreen.SetActive(false);
         pauseScreen.SetActive(false);
+        victoryScreen.SetActive(false);
     }
     
     // Update is called once per frame
@@ -42,13 +46,18 @@ public class UiManager : MonoBehaviour
             }
         }
         // Stop time when game is paused
-        if(paused || over)
+        if(paused || over || won)
         {
             Time.timeScale = 0f;
         }
         else
         {
             Time.timeScale = 1f;
+        }
+        // If health is 0, run game over method, also check game over hasnt been run before so the sound dosn't play repeatedly
+        if(victory.win && !won)
+        {
+            Victory();
         }
     }
 
@@ -70,5 +79,12 @@ public class UiManager : MonoBehaviour
     {
         paused = false;
         pauseScreen.SetActive(false);
+    }
+    // This method brings up the victory screen, and plays the victory sound
+    public void Victory()
+    {
+        won = true;
+        victoryScreen.SetActive(true);
+        AudioManager.instance.PlayVictorySound();
     }
 }

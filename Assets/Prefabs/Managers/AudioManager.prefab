@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7511864176351672742
 MonoBehaviour:
@@ -49,4 +49,5 @@ MonoBehaviour:
   hurt: {fileID: 8300000, guid: 6780496e1a1c8f044a81056668c61b99, type: 3}
   grav: {fileID: 8300000, guid: 5305704161962564891d46dcbaec0c1a, type: 3}
   gameOver: {fileID: 8300000, guid: 2279134f4f193674fa0d9d5634293c04, type: 3}
+  victory: {fileID: 8300000, guid: 8ebc563b0b86512488c59032606ce1be, type: 3}
   backgroundMusic: {fileID: 8300000, guid: d0bf1437f6cbd164baba5d661ba6e976, type: 3}

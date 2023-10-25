@@ -44,7 +44,7 @@ public class Bullet : MonoBehaviour
         // Increase collider size slightly so enemies can leave bullet radius before taking damage
         coll.radius = coll.radius * 1.5f;
         // Destroy the bullet half a second after it hits something
-        Invoke ("Destroy", 0.5f);
+        Invoke ("Destroy", 0.1f);
     }
 
     // This method is called to destroy the bullet when it hits something
