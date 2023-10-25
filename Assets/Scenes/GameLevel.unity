@@ -166,57 +166,7 @@ Transform:
   - {fileID: 759898285}
   - {fileID: 1682648443}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &120927852
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 120927854}
-  - component: {fileID: 120927853}
-  m_Layer: 0
-  m_Name: AudioManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &120927853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120927852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5198d0657868774d840aac8bbd564b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerJump: {fileID: 8300000, guid: b37ce52161a9b834888a6ba2f3c04783, type: 3}
-  playerShoot: {fileID: 8300000, guid: 0ed0f0dff76aeb14d837741f86dec16a, type: 3}
-  hurt: {fileID: 8300000, guid: 6780496e1a1c8f044a81056668c61b99, type: 3}
-  grav: {fileID: 8300000, guid: 5305704161962564891d46dcbaec0c1a, type: 3}
-  gameOver: {fileID: 8300000, guid: 2279134f4f193674fa0d9d5634293c04, type: 3}
-  backgroundMusic: {fileID: 8300000, guid: d0bf1437f6cbd164baba5d661ba6e976, type: 3}
---- !u!4 &120927854
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 120927852}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.982788, y: -2.2879028, z: -0.08833395}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &169348689
 GameObject:
@@ -302,8 +252,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1580374502}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 6785722702219834989, guid: fc6cd355f52ce63448c49c33d9fcfa03, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -1791,8 +1741,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1580374502}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 6785722702219834989, guid: fc6cd355f52ce63448c49c33d9fcfa03, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -1979,8 +1929,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1580374502}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 6785722702219834989, guid: fc6cd355f52ce63448c49c33d9fcfa03, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -2189,8 +2139,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1580374502}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 6785722702219834989, guid: fc6cd355f52ce63448c49c33d9fcfa03, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
@@ -2239,50 +2189,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376379347}
   m_CullTransparentMesh: 1
---- !u!1 &386582681
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 386582682}
-  - component: {fileID: 386582683}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &386582682
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386582681}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.611129, y: -1.3290689, z: -0.12667872}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &386582683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 386582681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3a0a46d3364a7419a0de47a84c4379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &460846742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2367,8 +2273,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1580374502}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 6785722702219834989, guid: fc6cd355f52ce63448c49c33d9fcfa03, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: Quit
         m_Mode: 1
         m_Arguments:
@@ -11511,7 +11417,7 @@ Transform:
   m_Children:
   - {fileID: 199513397}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &853335522
 Rigidbody2D:
@@ -12165,8 +12071,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1580374502}
-        m_TargetAssemblyTypeName: UiManager, Assembly-CSharp
+      - m_Target: {fileID: 6785722702219834989, guid: fc6cd355f52ce63448c49c33d9fcfa03, type: 3}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: MainMenu
         m_Mode: 1
         m_Arguments:
@@ -12460,7 +12366,7 @@ RectTransform:
   - {fileID: 545337473}
   - {fileID: 1942169087}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -13409,5 +13315,5 @@ Transform:
   m_Children:
   - {fileID: 543077129}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

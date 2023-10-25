@@ -64,26 +64,10 @@ public class UiManager : MonoBehaviour
         paused = true;
         pauseScreen.SetActive(true);
     }
-
     // Unpause the game
     public void Resume()
     {
         paused = false;
         pauseScreen.SetActive(false);
-    }
-    // Reload the curent scene, restarting the game
-    public void Restart()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-    }
-    // Load the first scene, opening the main menu
-    public void MainMenu()
-    {
-        SceneManager.LoadScene(0);
-    }
-    // Quit application, closing the game
-    public void Quit()
-    {
-        Application.Quit();
     }
 }

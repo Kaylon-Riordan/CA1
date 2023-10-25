@@ -105,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Creates a method that makes the player jump
-    private void Jump()
+    public void Jump()
     {
         // Changes the velocity of the players rigid body along the vertical axis
         body.velocity = new Vector2(body.velocity.x, jumpHeight);
