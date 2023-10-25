@@ -9,9 +9,10 @@ public class EnemySlime : MonoBehaviour
     [SerializeField] private Transform right;
     // Create a referance for the rigid body
     private Rigidbody2D body;
-    // Set variables for speed and damage
+    // Set variables for speed, damage and gravity
     public float speed = -4f;
-    private float damage = 1;
+    public float gravity = 1f;
+    private float damage = 1f;
     // Sets variables for a flip tiemr and cooldown, so the enemy dosnt constantly flip on spot as soon as it leaves boundaries
     private float flipCooldown = 1f;
     private float flipTimer = 1f;
@@ -21,6 +22,9 @@ public class EnemySlime : MonoBehaviour
     {
         // Link body varaible to the slimes rigid body
         body = GetComponent<Rigidbody2D>();
+        // flip gravity and sprite for upsideown slimes
+        body.gravityScale = gravity;
+        gameObject.transform.localScale *= gravity;
     }
 
     // Fixed Update is called at a fixed rate so methods inside it aren't affected by framerate

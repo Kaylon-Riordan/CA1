@@ -30,8 +30,8 @@ public class Bullet : MonoBehaviour
     {
         // Increase the decay variable by delta time, which is a rough calculation of every second
         decay += Time.deltaTime;
-        // If 5 seconds pass, destroy the bullet
-        if (decay > 5) Destroy(gameObject);
+        // If 10 seconds pass, destroy the bullet
+        if (decay > 10) Destroy(gameObject);
     }
 
     // This method is called whenever the bullets collider collides with another collider

@@ -116,6 +116,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Creates a method to vary jump height based on button press length
+    // This method is based on code in this video (Pandemonium (2022). Unity 2D Platformer for Complete Beginners - #12 ADVANCED JUMPING. YouTube. Available at: https://www.youtube.com/watch?v=oFO4pgrQPOI&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=12 [Accessed 25 Oct. 2023].)
     private void Hop()
     {
         // When space is released, half vertical velocity, cutting jump short
@@ -196,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isGrounded()
     {
         // Casts a box ray to check if there is a ground object at the players feet and returns result
-        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, feet, 0.01f, layerGround);
+        RaycastHit2D raycastHit = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0, feet, 0.1f, layerGround);
         return raycastHit.collider != null;
     }
 }

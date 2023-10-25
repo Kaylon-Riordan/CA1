@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// code in this script is based off code from this video (Pandemonium (2022). Unity 2D Platformer for Complete Beginners - #14 GAME OVER. YouTube. Available at: https://www.youtube.com/watch?v=3tQSAtaSwvc&list=PLgOEwFbvGm5o8hayFB6skAfa8Z-mw4dPV&index=15 [Accessed 25 Oct. 2023].)
 public class UiManager : MonoBehaviour
 {
     // Set up serialize fields to link in the pause and game over screens, and the health script
@@ -41,7 +42,7 @@ public class UiManager : MonoBehaviour
             }
         }
         // Stop time when game is paused
-        if(paused)
+        if(paused || over)
         {
             Time.timeScale = 0f;
         }
