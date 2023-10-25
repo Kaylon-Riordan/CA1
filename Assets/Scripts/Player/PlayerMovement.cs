@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         // If g is pressed, call the method to flip gravity
-        if(Input.GetKeyDown(KeyCode.G) && canGrav)
+        if(Input.GetMouseButtonDown(1) && canGrav)
         {
             Grav();
         }
@@ -159,8 +159,8 @@ public class PlayerMovement : MonoBehaviour
     {
         // Sets the players collider back to origional height
         coll.size = new Vector3(coll.size.x, height);
-        // Sets speed back to 10 so player can move after crouching
-        speed = 10f;
+        // Sets speed back to 6 so player can move after crouching
+        speed =  6f;
         // Changes variables which are used by the animator
         isCrouching = false;
         isSliding = false;
