@@ -32,6 +32,8 @@ Pandemonium (2020). Unity 2D Platformer for Complete Beginners - #2 ANIMATION. Y
 
 Ansimuz. (2023). Super Grotto Escape Pack. [online] Available at: https://assetstore.unity.com/packages/2d/environments/super-grotto-escape-pack-238393 [Accessed 25 Oct. 2023].
 
+KnoblePersona. (2023). Smoke & Fire Animated Particle [16x16]. [online] Available at: https://opengameart.org/content/smoke-fire-animated-particle-16x16 [Accessed 26 Oct. 2023].
+
 ##### Sounds
 
 king, sfx (2020). Minecraft fall damage sound effect. YouTube. Available at: https://www.youtube.com/watch?v=Lc6lJ5O4_Ls&list=PLHf92BaI_Y_K_7kuzZyIjLeUyEW5ahTf6&index=10 [Accessed 25 Oct. 2023].
