@@ -37,7 +37,7 @@ public class UiManager : MonoBehaviour
         // If escape is pressed, turn the pause menu on and off, slong as the game over screen isn't on
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(!paused && !over)
+            if(!paused && !over && !won)
             {
                 Pause();
             }
